@@ -1,0 +1,8 @@
+[project]
+name = "hello-world"
+description = "My cool hello world"
+version = "0.1.0-beta"
+license = ["BSD-3-Clause", "Unlicense"]
+authors = ["nitrogenez <nitrogenez@gmail.com>"]
+type = "app"
+std = "23"

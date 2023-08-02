@@ -1,0 +1,5 @@
+[project]
+description = "An invalid-ass project"
+version = "0.1.0-beta"
+authors = ["nitrogenez <nitrogenez@gmail.com>"]
+std = "23"

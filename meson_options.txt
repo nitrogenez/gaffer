@@ -1,0 +1,9 @@
+option('profile',
+    type: 'combo',
+    choices: [
+        'devel',
+        'default'
+    ],
+    value: 'default',
+    description: 'Gaffer build profile'
+)
