@@ -16,19 +16,19 @@ on:
       - ".github/workflows/CI.yaml"
 
 jobs:
-  build:
-    name: "Ubuntu Latest"
+  mesonbuild:
+    name: "Build Gaffer with Meson on Arch Linux"
     runs-on: ubuntu-latest
     container:
-      image: elementary/docker:unstable
+      image: archlinux
     steps:
-      - uses: actions/checkout@v1
       - name: Install build-time dependencies
         run: |
-          apt update
-          apt install -y meson
-      - name: Build
-        run: |
-          meson setup build
-          ninja -C build
-          ninja -C build install
+          pacman --noconfirm --noprogressbar -Syyu
+          pacman --noconfirm --noprogressbar -S meson ninja
+      - name: Checkout Gaffer
+        uses: actions/checkout@v3
+      - name: Generate build files
+        run: meson setup build
+      - name: Compile 
+        run: ninja -C build install
