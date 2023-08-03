@@ -1,0 +1,21 @@
+name: Gaffer CI Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: "Ubuntu Latest"
+    runs-on: ubuntu-latest
+    container:
+      image: elementary/docker:unstable
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install build-time dependencies
+        run: |
+          apt update
+          apt install -y meson ninja
+      - name: Build
+        run: |
+          meson setup build
+          ninja -C build
+          ninja -C build install
