@@ -1,6 +1,19 @@
 name: Gaffer CI Build
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - "**.cc"
+      - "**.hh"
+      - "**/meson.build"
+      _ ".github/workflows/CI.yaml"
+
+  pull_request:
+    paths:
+      - "**.cc"
+      _ "**.hh"
+      _ "**/meson.build"
+      - ".github/workflows/CI.yaml"
 
 jobs:
   build:
@@ -13,7 +26,7 @@ jobs:
       - name: Install build-time dependencies
         run: |
           apt update
-          apt install -y meson ninja
+          apt install -y meson
       - name: Build
         run: |
           meson setup build
