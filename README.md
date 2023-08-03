@@ -1,6 +1,11 @@
 <h1 align="center">Gaffer</h1>
 <h3 align="center">A project manager for modern C++</h3>
 
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/nitrogenez/gaffer/CI.yaml?style=flat-square&logo=github)
+![GitHub issues](https://img.shields.io/github/issues/nitrogenez/gaffer?style=flat-square&label=Issues&logo=github)
+![License](https://img.shields.io/github/license/nitrogenez/gaffer?style=flat-square&label=License)
+![GitHub forks](https://img.shields.io/github/forks/nitrogenez/gaffer?label=Fork%20me!&style=flat-square&logo=github)
+
 ## Description
 Gaffer is a project manager for modern C++ heavily inspired by Cargo for the Rust programming language. Gaffer aims to be customizable, fast, pretty, and easy to use.
 
