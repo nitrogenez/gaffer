@@ -16,7 +16,7 @@ on:
       - ".github/workflows/CI.yaml"
 
 jobs:
-  mesonbuild:
+  meson_gcc:
     name: "Build Gaffer with Meson on Arch Linux"
     runs-on: ubuntu-latest
     container:
@@ -25,10 +25,10 @@ jobs:
       - name: Install build-time dependencies
         run: |
           pacman --noconfirm --noprogressbar -Syyu
-          pacman --noconfirm --noprogressbar -S meson ninja
+          pacman --noconfirm --noprogressbar -S meson ninja base-devel
       - name: Checkout Gaffer
         uses: actions/checkout@v3
       - name: Generate build files
         run: meson setup build
-      - name: Compile 
+      - name: Compile
         run: ninja -C build install
