@@ -6,13 +6,13 @@ on:
       - "**.cc"
       - "**.hh"
       - "**/meson.build"
-      _ ".github/workflows/CI.yaml"
+      - ".github/workflows/CI.yaml"
 
   pull_request:
     paths:
       - "**.cc"
-      _ "**.hh"
-      _ "**/meson.build"
+      - "**.hh"
+      - "**/meson.build"
       - ".github/workflows/CI.yaml"
 
 jobs:
