@@ -17,7 +17,7 @@ on:
 
 jobs:
   meson_gcc:
-    name: "Build Gaffer with Meson on Arch Linux"
+    name: "Build Gaffer with Meson on Arch Linux (GCC)"
     runs-on: ubuntu-latest
     container:
       image: archlinux

@@ -19,7 +19,8 @@ gaffer += {'version': meson.project_version()}
 gaffer += {'name': meson.project_name()}
 gaffer += {'license': meson.project_license()[0]}
 gaffer += {'description': 'A project manager for modern C++'}
-
+gaffer += {'build_id': '@0@-@1@-@2@'
+    .format(get_option('buildtype'), target_machine.system(), target_machine.cpu_family())}
 gaffer += {'incdirs': include_directories('include')}
 gaffer += {'sources': files(
     'src/main.cc'
@@ -46,7 +47,10 @@ add_project_arguments([
 add_project_arguments([
     '-DGAFFER_VERSION="@0@"'.format(gaffer['version']),
     '-DGAFFER_PLATFORM="@0@"'.format(target_machine.system()),
-    '-DGAFFER_ARCH="@0@"'.format(target_machine.cpu_family())
+    '-DGAFFER_ARCH="@0@"'.format(target_machine.cpu_family()),
+    '-DGAFFER_BUILD_ID="@0@"'.format(gaffer['build_id']),
+    '-DGAFFER_DESCRIPTION="@0@"'.format(gaffer['description']),
+    '-DGAFFER_LICENSE="@0@"'.format(gaffer['license'])
 ], language: 'cpp')
 
 executable('gaffer@0@'.format(out_suffix),
