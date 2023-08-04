@@ -32,3 +32,21 @@ jobs:
         run: meson setup build
       - name: Compile
         run: ninja -C build install
+
+  meson_clang:
+    name: "Build Gaffer with Meson on Fedora Latest (clang)"
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
+    steps:
+      - name: Install build-time dependencies
+        run: dnf install -y meson clang
+      - name: Checkout Gaffer
+        run: actions/checkout@v3
+      - name: Generate build files
+        run: |
+          export CXX="$(which clang++)"
+          export CC="$(which clang)"
+          meson setup build
+      - name: Compile
+        run: ninja -C build install
