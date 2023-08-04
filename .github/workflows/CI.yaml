@@ -42,7 +42,7 @@ jobs:
       - name: Install build-time dependencies
         run: dnf install -y meson clang
       - name: Checkout Gaffer
-        run: actions/checkout@v3
+        run: actions/checkout@v1
       - name: Generate build files
         run: |
           export CXX="$(which clang++)"
