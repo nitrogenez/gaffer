@@ -1,12 +1,13 @@
-#include <cstdlib>
-#include <filesystem>
 #include <gaffer.hh>
 #include <core/project.hh>
-#include <stdexcept>
 #include <util/fmt.hh>
-#include <argparse.hh>
 
 #include <iostream>
+#include <filesystem>
+#include <cstdlib>
+#include <stdexcept>
+
+#include <argparse/argparse.hpp>
 
 using namespace argparse;
 using namespace gaffer;
@@ -73,28 +74,36 @@ int main(int argc, char** argv) {
     }
 
     if (cli.is_subcommand_used("validate")) {
-        gaffer::core::Project project;
+        using Validity = core::ProjectValidity;
+        core::Project project;
 
         if (!std::filesystem::exists("project.toml")) {
             return 1;
         }
+        Validity validity = project.is_valid();
+        std::string color;
 
-        if (!project) {
-            std::cout << "  The project is "
-                << util::colored("invalid", util::Color::Red, util::Color::Bold)
-                << std::endl;
-            return 1;
-        } else {
-            std::cout << "  The project is "
-                << util::colored("valid", util::Color::Green, util::Color::Bold)
-                << std::endl;
-            return 0;
+        switch (validity) {
+            case Validity::Valid:
+                color = util::Color::Green;
+                break;
+            case Validity::SemiValid:
+                color = util::Color::Yellow;
+                break;
+            case Validity::Invalid:
+                color = util::Color::Red;
+                break;
+            default:
+                break;
         }
+        std::cout << "Project is "
+            << util::colored(std::to_string(validity), color, util::Color::Bold)
+            << std::endl;
     }
 
     else if (cli.is_subcommand_used("new")) {
         if (std::filesystem::exists(cli_new.get("name"))) {
-            std::cerr << "    Project '" << cli_new.get("name") << "' already exists" << std::endl;
+            std::cerr << "Project '" << cli_new.get("name") << "' is already present" << std::endl;
             return 0;
         }
 
@@ -114,9 +123,7 @@ int main(int argc, char** argv) {
             return 1;
         }
         std::cout
-            << "     "
-            << util::colored("Created", util::Color::Green, util::Color::Bold)
-            << " "
+            << util::colored("Created ", util::Color::Green, util::Color::Bold)
             << core::ProjectTypeImpl::as_str_pretty(t)
             << " project '" << cli_new.get("name") << "'" << std::endl;
     }

@@ -23,8 +23,12 @@ gaffer += {'build_id': '@0@-@1@-@2@'
     .format(get_option('buildtype'), target_machine.system(), target_machine.cpu_family())}
 gaffer += {'incdirs': include_directories('include')}
 gaffer += {'sources': files(
-    'src/main.cc'
+    'src/main.cc',
+    'src/core/project.cc'
 )}
+gaffer += {'deps': [
+    subproject('argparse').get_variable('argparse_dep')
+]}
 
 out_suffix = ''
 cpp = meson.get_compiler('cpp')
@@ -53,7 +57,10 @@ add_project_arguments([
     '-DGAFFER_LICENSE="@0@"'.format(gaffer['license'])
 ], language: 'cpp')
 
-executable('gaffer@0@'.format(out_suffix),
+gaffer = executable('gaffer@0@'.format(out_suffix),
     sources: gaffer['sources'],
-    include_directories: gaffer['incdirs']
+    include_directories: gaffer['incdirs'],
+    dependencies: gaffer['deps']
 )
+
+subdir('tests')

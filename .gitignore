@@ -35,3 +35,7 @@
 build/
 .cache/
 .vscode/
+
+# Meson wraps
+subprojects/*
+!subprojects/*.wrap

@@ -1,5 +1,5 @@
-<h1 align="center">Gaffer</h1>
-<h3 align="center">A project manager for modern C++</h3>
+<img align="center" src="assets/Gaffer.svg"></img>
+<h3 align="center">Gaffer: A project manager for modern C++</h3>
 
 ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/nitrogenez/gaffer/CI.yaml?style=flat-square&logo=github)
 ![GitHub issues](https://img.shields.io/github/issues/nitrogenez/gaffer?style=flat-square&label=Issues&logo=github)
