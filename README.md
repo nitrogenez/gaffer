@@ -1,10 +1,11 @@
-<img align="center" src="assets/Gaffer.svg"></img>
+<img align="center" src="assets/Gaffer_Banner.svg"></img>
 <h3 align="center">Gaffer: A project manager for modern C++</h3>
 
-![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/nitrogenez/gaffer/CI.yaml?style=flat-square&logo=github)
-![GitHub issues](https://img.shields.io/github/issues/nitrogenez/gaffer?style=flat-square&label=Issues&logo=github)
-![License](https://img.shields.io/github/license/nitrogenez/gaffer?style=flat-square&label=License)
-![GitHub forks](https://img.shields.io/github/forks/nitrogenez/gaffer?label=Fork%20me!&style=flat-square&logo=github)
+![Build](https://img.shields.io/github/actions/workflow/status/nitrogenez/gaffer/CI.yaml?style=flat-square&logo=github&labelColor=1a0026&color=cc51ff)
+![Commits](https://img.shields.io/github/commit-activity/m/nitrogenez/gaffer?style=flat-square&logo=github&label=Commits%2Fmonth&labelColor=1a0026&color=cc51ff)
+![License](https://img.shields.io/github/license/nitrogenez/gaffer?style=flat-square&color=cc51ff&labelColor=1a0026&label=Licensed%20under)
+![Forks](https://img.shields.io/github/forks/nitrogenez/gaffer?label=Fork%20me!&style=flat-square&labelColor=1a0026&color=cc51ff&logo=github)
+![GitHub contributors](https://img.shields.io/github/contributors-anon/nitrogenez/gaffer?style=flat-square&logo=github&label=Contributors&labelColor=1a0026&color=cc51ff)
 
 ## Description
 Gaffer is a project manager for modern C++ heavily inspired by Cargo for the Rust programming language. Gaffer aims to be customizable, fast, pretty, and easy to use.

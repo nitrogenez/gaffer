@@ -14,6 +14,16 @@
 
 namespace fs = std::filesystem;
 
+#define LOG(x) gaffer::core::Log(x, true, __FILE_NAME__, __LINE__)
+
+#define log_trace LOG(gaffer::core::LogLevel::Trace)
+#define log_debug LOG(gaffer::core::LogLevel::Debug)
+#define log_info LOG(gaffer::core::LogLevel::Info)
+#define log_warn LOG(gaffer::core::LogLevel::Warning)
+#define log_err LOG(gaffer::core::LogLevel::Error)
+#define status_ok LOG(gaffer::core::LogLevel::Status_OK)
+#define status_err LOG(gaffer::core::LogLevel::Status_FAILED)
+
 namespace gaffer::core
 {
     enum class LogLevel {

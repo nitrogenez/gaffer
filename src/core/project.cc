@@ -40,7 +40,7 @@ namespace gaffer::core
 
         // TODO: Replace std::cerr with the error log
         if (!fs::exists(project_path)) {
-            std::cerr << "There is no any project!" << std::endl;
+            log_err << "There is no project to be found";
             return;
         }
 
@@ -48,7 +48,7 @@ namespace gaffer::core
         if (toml::parse_result res = toml::parse_file(project_path.string())) {
             project = res.table();
         } else {
-            std::cerr << "Unable to read project: " << res.error() << std::endl;
+            log_err << "Unable to parse project: " << res.error();
             return;
         }
 
