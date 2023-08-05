@@ -17,7 +17,7 @@ on:
 
 jobs:
   meson_gcc:
-    name: "Build Gaffer with Meson on Arch Linux (GCC)"
+    name: "CI: Meson (archlinux-gcc)"
     runs-on: ubuntu-latest
     container:
       image: archlinux
@@ -34,13 +34,13 @@ jobs:
         run: ninja -C build install
 
   meson_clang:
-    name: "Build Gaffer with Meson on Fedora Latest (clang)"
+    name: "CI: Meson (fedora:latest-clang)"
     runs-on: ubuntu-latest
     container:
       image: fedora:latest
     steps:
       - name: Install build-time dependencies
-        run: dnf install -y meson clang
+        run: dnf install -y meson clang which
       - name: Generate build files
         run: |
           export CXX="$(which clang++)"
