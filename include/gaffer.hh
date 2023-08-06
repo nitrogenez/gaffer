@@ -16,4 +16,6 @@ namespace gaffer {
 
     typedef size_t usize;
     typedef intmax_t ssize;
+
+    typedef unsigned char uchar;
 }

@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"mesonbuild.configureOnOpen": false,
+		"editor.renderWhitespace": "trailing",
+		"editor.rulers": [80],
+	}
+}

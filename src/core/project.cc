@@ -1,18 +1,17 @@
-#include <sstream>
 #define TOML_EXCEPTIONS 0
 #define TOML_HEADER_ONLY 1
 
-
-#include <algorithm>
-#include <cstdlib>
 #include <gaffer.hh>
 #include <core/project.hh>
 #include <core/logger.hh>
 #include <core/person.hh>
 #include <filesystem>
 #include <string>
-#include <toml.hh>
+#include <sstream>
+#include <algorithm>
+#include <cstdlib>
 #include <array>
+#include <toml.hh>
 
 
 namespace gaffer::core
@@ -101,6 +100,9 @@ namespace gaffer::core
         // Basic ofstream to open all needed project files
         std::ofstream file;
 
+        // TODO: I think it'd be better, if we made this so
+        // the user can change the template. But that's for
+        // the future.
         file.open(project_file, std::ios::out);
         file
             << "[project]\n"
@@ -149,8 +151,12 @@ namespace gaffer::core
             file.close();
         }
 
-        // Just a temporary workaround
-        // TODO: FIX THAT SHAMEFUL SHIT!!!!!
+        // -Just a temporary workaround-
+        // 'Kay, this is now a fucking monument
+        // of my misery. I know how to make it work
+        // better, but it's too risky, especially
+        // in UNIX environment. I don't want to put anyone
+        // at risk of an attack.
         fs::current_path(project_root);
         std::system("git init > /dev/null");
         fs::current_path(cwd);

@@ -28,16 +28,16 @@ namespace gaffer::util
         using years = chr::years;
 
         static std::string local(const std::string& fmt = "%Y-%m-%dT%H:%M:%S") {
-            return Time::from_time_point(Time::clock::now(), fmt);    
+            return Time::time_point_to_str(Time::clock::now(), fmt);    
         }
 
         template<typename Clock = Time::precise_clock>
         static std::string now(const std::string& fmt = "%Y-%m-%dT%H:%M:%S") {
-            return Time::from_time_point<Clock>(Clock::now(), fmt);
+            return Time::time_point_to_str<Clock>(Clock::now(), fmt);
         }
 
         template<typename Clock = Time::clock>
-        static std::string from_time_point(
+        static std::string time_point_to_str(
             std::chrono::time_point<Clock> point,
             const std::string& fmt)
         {

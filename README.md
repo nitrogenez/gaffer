@@ -17,11 +17,13 @@ Gaffer is a project manager for modern C++ heavily inspired by Cargo for the Rus
 ## Contributing
 If you wish to contribute to Gaffer, there are steps you need to follow:
 
-+ **Step 1**: Fork the [gaffer repository](https://github.com/nitrogenez/gaffer)
-+ **Step 2**: Start a new branch via `git checkout` with the name like `some-feature/fix`
++ **Step 1**: [Fork the gaffer repository](https://github.com/nitrogenez/gaffer/fork)
++ **Step 2**: Start a new branch, e.g `git checkout -b feature/cool_feature`
 + **Step 3**: Make your changes
-+ **Step 4**: [Open a merge request](https://github.com/nitrogenez/gaffer/compare)
-+ **Step 5**: Wait for the Gaffer maintainers to review your request
++ **Step 4**: Commit your changes, e.g `git commit -m "feature: added cool feature"`
++ **Step 5**: [Open a merge request](https://github.com/nitrogenez/gaffer/compare)
++ **Step 6**: Wait for the Gaffer maintainers to review your request
++ **Step 7**: There's no step seven
 
 ## Code styling
 There are no any rules on what the code should look like.  

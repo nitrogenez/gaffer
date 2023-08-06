@@ -26,8 +26,18 @@ gaffer += {'sources': files(
     'src/main.cc',
     'src/core/project.cc'
 )}
+gaffer += {'prefix': get_option('prefix')}
+gaffer += {'datadir': get_option('datadir')}
+
+openssl_dep = dependency('openssl', version: '>= 3.1', required: false)
+
+if openssl_dep.found()
+    add_project_arguments('-DGAFFER_CRYPTO', language: 'cpp')
+endif
+
 gaffer += {'deps': [
-    subproject('argparse').get_variable('argparse_dep')
+    subproject('argparse').get_variable('argparse_dep'),
+    dependency('openssl', version: '>= 3.1')
 ]}
 
 out_suffix = ''
@@ -54,7 +64,9 @@ add_project_arguments([
     '-DGAFFER_ARCH="@0@"'.format(target_machine.cpu_family()),
     '-DGAFFER_BUILD_ID="@0@"'.format(gaffer['build_id']),
     '-DGAFFER_DESCRIPTION="@0@"'.format(gaffer['description']),
-    '-DGAFFER_LICENSE="@0@"'.format(gaffer['license'])
+    '-DGAFFER_LICENSE="@0@"'.format(gaffer['license']),
+    '-DGAFFER_PREFIX="@0@"'.format(gaffer['prefix']),
+    '-DGAFFER_DATA_DIR="@0@"'.format(gaffer['datadir'])
 ], language: 'cpp')
 
 gaffer = executable('gaffer@0@'.format(out_suffix),
