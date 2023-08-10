@@ -20,7 +20,20 @@ namespace gaffer::core
 {
     namespace fs = std::filesystem;
 
-    constexpr const std::array<std::string, 12> names {
+    constexpr ProjectType type_from_str(std::string const& str) {
+        if (str == "app")
+            return ProjectType::App;
+
+        else if (str == "shared_lib")
+            return ProjectType::SharedLibrary;
+
+        else if (str == "static_lib")
+            return ProjectType::StaticLibrary;
+
+        return ProjectType::None;
+    }
+
+    const std::array<std::string, 12> names {
         "static_lib",
         "shared_lib",
         "dependency",
@@ -110,7 +123,7 @@ namespace gaffer::core
             << "[project]\n"
             << std::format("name = \"{}\"\n", name)
             << "version = \"0.1.0\"\n"
-            << std::format("type = \"{}\"\n", ProjectTypeImpl::as_str(type))
+            << std::format("type = \"{}\"\n", std::to_string(type))
             << "std = \"20\"\n\n"
             << "# For more info see Gaffer docs\n\n"
             << "[opts]\n\n[deps]" << std::endl;
@@ -192,5 +205,55 @@ namespace gaffer::core
         else if (points >= 0 && points < 4)
             return Validity::SemiValid;
         return Validity::Valid;
+    }
+}
+
+namespace std
+{
+    string to_string(gaffer::core::ProjectType const& project_type) {
+        using P = gaffer::core::ProjectType;
+        switch (project_type) {
+            case P::App: return "app";
+            case P::SharedLibrary: return "shared_lib";
+            case P::StaticLibrary: return "static_lib";
+            default:
+                break;
+        }
+        return "";
+    }
+
+    string to_string(gaffer::core::ProjectData const& data) {
+        ostringstream os;
+
+        os << "Project { name: " << data.name << ", ";
+        os << "version: none, ";
+        os << "description: " << data.description << ", ";
+        os << "license: [";
+
+        for (auto const& e: data.license) {
+            os << e;
+            if (e != data.license.back())
+                os << ", ";
+        }
+
+        os << "], ";
+        os << "authors: [";
+
+        for (auto const& e: data.authors) os << e;
+
+        os << "]";
+        return os.str();
+    }
+
+    string to_string(gaffer::core::ProjectValidity const& project_validity) {
+        using V = gaffer::core::ProjectValidity;
+        switch (project_validity) {
+            case V::Valid: return "Valid";
+            case V::Invalid: return "Invalid";
+            case V::SemiValid: return "SemiValid";
+            default:
+                break;
+        }
+        return "";
     }
 }

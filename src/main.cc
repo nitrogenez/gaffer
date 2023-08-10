@@ -124,7 +124,7 @@ int main(int argc, char** argv) {
         }
         std::cout
             << util::colored("Created ", util::Color::Green, util::Color::Bold)
-            << core::ProjectTypeImpl::as_str_pretty(t)
+            << std::to_string(t)
             << " project '" << cli_new.get("name") << "'" << std::endl;
     }
 
