@@ -32,6 +32,13 @@ namespace gaffer::core
         }
     }
 
+    bool PersonData::operator==(PersonData const& other) const {
+        return (username == other.username) && (email == other.email);
+    }
+    bool PersonData::operator!=(PersonData const& other) const {
+        return !(*this == other);
+    }
+
     std::ostream& operator<<(std::ostream& os, PersonData const& data) {
         os << (std::string)data;
         return os;

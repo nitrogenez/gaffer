@@ -14,6 +14,9 @@ namespace gaffer::core {
 
         PersonData(std::string const& str);
         operator std::string() const;
+
+        bool operator==(PersonData const& other) const;
+        bool operator!=(PersonData const& other) const;
     };
     std::ostream& operator<<(std::ostream& os, PersonData const& pd);
 }

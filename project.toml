@@ -1,0 +1,20 @@
+# This software is licensed under the 
+# BSD-3-Clause license. To learn more, see LICENSE.md.
+
+# Copyright (c) 2023 nitrogenez and Gaffer contributors
+
+[project]
+name = "gaffer"
+version = "0.2.0-alpha"
+license = ["BSD-3-Clause"]
+authors = ["nitrogenez <nitrogenez@github.com>"]
+type = "app"
+std = "c++23"
+
+[opts]
+warning_level = 3
+werror = false
+
+[deps]
+argparse = { git = "github@p-ranav/argparse", build_system = "cmake" }
+tomlplusplus = { git = "github@marzer/tomlplusplus", build_system = "meson"}

@@ -70,6 +70,7 @@ namespace gaffer::core
             .at_path("project.name").value_or("");
         this->data.description = project
             .at_path("project.description").value_or("");
+        this->data.version = Version(project.at_path("project.version").value_or(""));
 
         if (toml::array* arr = project.at_path("project.authors").as_array()) {
             arr->for_each([this](auto&& e) {
@@ -173,7 +174,7 @@ namespace gaffer::core
         // in UNIX environment. I don't want to put anyone
         // at risk of an attack.
         fs::current_path(project_root);
-        std::system("git init > /dev/null");
+        std::system("git init &> /dev/null");
         fs::current_path(cwd);
 
         return true;
@@ -225,23 +226,27 @@ namespace std
     string to_string(gaffer::core::ProjectData const& data) {
         ostringstream os;
 
-        os << "Project { name: " << data.name << ", ";
-        os << "version: none, ";
-        os << "description: " << data.description << ", ";
-        os << "license: [";
+        os << "{\"project\":{\"name\":\"" << data.name << "\",";
+        os << "\"version\":\"" << data.version << "\",";
+        os << "\"description\":\"" << data.description << "\",";
+        os << "\"license\":[";
 
         for (auto const& e: data.license) {
-            os << e;
-            if (e != data.license.back())
-                os << ", ";
+            os << "\"" << e << "\"";
+            if (e != data.license.back()) os << ",";
         }
 
-        os << "], ";
-        os << "authors: [";
+        os << "],";
+        os << "\"authors\":[";
 
-        for (auto const& e: data.authors) os << e;
+        for (auto const& e: data.authors) {
+            os << "\"" << e << "\"";
+            if (e != data.authors.back()) {
+                os << ",";
+            }
+        }
 
-        os << "]";
+        os << "]}}";
         return os.str();
     }
 

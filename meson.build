@@ -1,7 +1,7 @@
 project(
     'gaffer',
     'cpp',
-    version: '0.1.0-alpha',
+    version: '0.2.0-alpha',
     meson_version: '>= 1.0',
     license: 'BSD-3-Clause',
 
@@ -34,6 +34,7 @@ gaffer += {
         'src/core/logger.cc',
         'src/core/person.cc',
         'src/core/project.cc',
+        'src/core/version.cc',
         'src/main.cc',
         'src/util/fmt.cc',
         'src/util/string.cc',

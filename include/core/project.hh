@@ -2,6 +2,7 @@
 
 #include <gaffer.hh>
 #include <core/person.hh>
+#include <core/version.hh>
 #include <string>
 #include <sstream>
 #include <vector>
@@ -19,6 +20,7 @@ namespace gaffer::core {
     struct ProjectData {
         std::string name;
         std::string description;
+        Version version;
 
         std::vector<std::string> license;
         std::vector<PersonData> authors;

@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
     ArgumentParser cli_new {"new"};
 
     cli_validate.add_description("Validate the current project");
-    cli_info.add_description("Show the current project info");
+    cli_info.add_description("Print the current project info in JSON format");
     cli_new.add_description("Create a new project");
 
     cli_new.add_argument("name")
@@ -126,6 +126,12 @@ int main(int argc, char** argv) {
             << util::colored("Created ", util::Color::Green, util::Color::Bold)
             << std::to_string(t)
             << " project '" << cli_new.get("name") << "'" << std::endl;
+    }
+
+    if (cli.is_subcommand_used("info")) {
+        core::Project project;
+
+        std::cout << std::to_string(project.data) << std::endl;
     }
 
     return 0;
