@@ -1,7 +1,6 @@
 #include <gaffer.hh>
 #include <core/project.hh>
 #include <util/fmt.hh>
-#include <util/fs.hh>
 
 #include <iostream>
 #include <filesystem>

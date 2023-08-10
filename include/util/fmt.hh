@@ -1,10 +1,7 @@
 #pragma once
 
 #include <gaffer.hh>
-
 #include <string>
-#include <string_view>
-#include <format>
 
 namespace gaffer::util::colorio {
     enum class AnsiColorCode: u32 {
@@ -24,13 +21,8 @@ namespace gaffer::util::colorio {
         Underline = 4
     };
 
-    inline static std::string color_to_string(AnsiColorCode code) {
-        return "\033[" + std::to_string((u32)code) + "m";
-    }
-
-    inline static std::string style_to_string(AnsiStyleCode code) {
-        return "\033[" + std::to_string((u32)code) + "m";
-    }
+    std::string color_to_string(AnsiColorCode const& code);
+    std::string style_to_string(AnsiStyleCode const& code);
 }
 
 namespace gaffer::util {
@@ -50,11 +42,7 @@ namespace gaffer::util {
             Underline = colorio::style_to_string(colorio::AnsiStyleCode::Underline);
     };
 
-    static inline std::string colored(
-        std::string_view str,
-        std::string_view color = "",
-        std::string_view style = "")
-    {
-        return std::format("{}{}{}{}", color, style, str, Color::Reset);
-    }
+    std::string colored(std::string const& str,
+        std::string const& color = "",
+        std::string const& style = "");
 }
